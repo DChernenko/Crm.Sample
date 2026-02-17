@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Domain/">
+    <Project Path="src/Crm.Sample.Domain/Crm.Sample.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="src/Crm.Sample.Infrastructure/Crm.Sample.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Persistence/">
+    <Project Path="src/Crm.Sample.Application/Crm.Sample.Application.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="src/Crm.Sample.Api/Crm.Sample.Api.csproj" />
+  </Folder>
+</Solution>
