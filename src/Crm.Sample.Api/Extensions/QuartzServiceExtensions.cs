@@ -4,6 +4,7 @@ using Quartz;
 
 namespace Crm.Sample.Api.Extensions
 {
+    // todo use Background Service instead of Quartz
     public static class QuartzServiceExtensions
     {
         public static IServiceCollection AddQuartzJobs(this IServiceCollection services, IConfiguration configuration)

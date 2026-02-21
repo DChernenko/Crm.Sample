@@ -1,6 +1,5 @@
-﻿using Crm.Sample.Application.Common.Interfaces;
-using Crm.Sample.Application.Services.Customers;
-using Crm.Sample.Application.Services.Redis;
+﻿using Crm.Sample.Application.Abstractions.Customers;
+using Crm.Sample.Application.Common.Interfaces;
 using Crm.Sample.Domain.Repositories.Customers;
 using Crm.Sample.Infrastructure.Options;
 using Crm.Sample.Infrastructure.Persistence;
@@ -28,18 +27,12 @@ namespace Crm.Sample.Infrastructure
             services.Configure<CronJobsOptions>(configuration.GetSection(nameof(CronJobsOptions)));
             #endregion Options
 
-            // Configure MongoDB settings
-            //services.Configure<MongoDbSettings>(
-            //    configuration.GetSection("MongoDBSettings"));
-
             var msSqlSettings = configuration.GetSection("MsSqlDbOptions").Get<MsSqlDbOptions>()
                 ?? throw new InvalidOperationException("Database connection string not configured");
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(msSqlSettings.ConnectionString));
 
-            // Register MongoDB context
-            //services.AddSingleton<MongoDBContext>();
             services.AddDbContext<AppDbContext>();
 
             //Redis 
@@ -54,14 +47,12 @@ namespace Crm.Sample.Infrastructure
             // Register repositories
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<IOrderRepository, OrderRepository>();
-
+            
             // Services
-            services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IEmailService, EmailService>();
 
             //Redis 
-            services.AddScoped<IRedisCache, RedisCache>();
+            services.AddScoped<IApplicationCach, RedisCache>();
 
             return services;
         }

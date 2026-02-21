@@ -1,17 +1,22 @@
-﻿using Crm.Sample.Application.Services.Redis;
+﻿using Crm.Sample.Application.Common.Enums;
+using Crm.Sample.Application.Common.Interfaces;
+using Crm.Sample.Infrastructure.Options;
+using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 using System.Text.Json;
 
 namespace Crm.Sample.Infrastructure.Services.Redis
 {
-    public class RedisCache : IRedisCache
+    public class RedisCache : IApplicationCach
     {
+        private readonly RedisOptions _redisOptions;
         private readonly IConnectionMultiplexer _connectionMultiplexer;
         private readonly IDatabase _database;
 
-        public RedisCache(IConnectionMultiplexer connectionMultiplexer)
+        public RedisCache(IConnectionMultiplexer connectionMultiplexer, IOptions<RedisOptions> options)
         {
             _connectionMultiplexer = connectionMultiplexer;
+            _redisOptions = options.Value;
             _database = _connectionMultiplexer.GetDatabase();
         }
 
@@ -28,6 +33,10 @@ namespace Crm.Sample.Infrastructure.Services.Redis
         public Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
         {
             var serialized = JsonSerializer.Serialize(value);
+
+            if (expiry == null)
+                expiry = TimeSpan.FromMinutes(_redisOptions.DefaulExpirationInMinutes);
+
             return _database.StringSetAsync(key, serialized, expiry, When.Always);
         }
 
@@ -49,10 +58,20 @@ namespace Crm.Sample.Infrastructure.Services.Redis
         public Task<bool> KeyExistsAsync(string key)
             => _database.KeyExistsAsync(key);
 
-        public Task HashSetAsync(string key, string field, string value)
-            => _database.HashSetAsync(key, field, value);
+        public string GetCacheKey(CacheOperation operation, string entity, params object[] parameters)
+        {
+            var key = $"{entity}:{operation}";
+            if (parameters != null && parameters.Length > 0)
+            {
+                key += ":" + string.Join(":", parameters);
+            }
+            return key;
+        }
 
-        public async Task<string> HashGetAsync(string key, string field)
-           => await _database.HashGetAsync(key, field);
+        //public Task HashSetAsync(string key, string field, string value)
+        //    => _database.HashSetAsync(key, field, value);
+
+        //public async Task<string> HashGetAsync(string key, string field)
+        //   => await _database.HashGetAsync(key, field);
     }
 }

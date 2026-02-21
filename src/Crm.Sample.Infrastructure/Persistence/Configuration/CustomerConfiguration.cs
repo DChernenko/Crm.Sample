@@ -1,8 +1,8 @@
 ﻿using Crm.Sample.Domain.Entities.Customers;
-using Crm.Sample.Infrastructure.Configuration.Base;
+using Crm.Sample.Infrastructure.Persistence.Configuration.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace Crm.Sample.Infrastructure.Configuration
+namespace Crm.Sample.Infrastructure.Persistence.Configuration
 {
     public class CustomerConfiguration : BaseEntityConfiguration<Customer>
     {

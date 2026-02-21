@@ -2,7 +2,7 @@
 using Crm.Sample.Infrastructure.Shared.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Crm.Sample.Infrastructure.Configuration.Base
+namespace Crm.Sample.Infrastructure.Persistence.Configuration.Base
 {
     public abstract class BaseEntityConfiguration<TEntity> : EntityTypeMap<TEntity>
         where TEntity : BaseEntity

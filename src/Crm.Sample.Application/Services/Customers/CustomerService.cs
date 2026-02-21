@@ -1,13 +1,13 @@
 ﻿using Crm.Sample.Application.Abstractions.Customers;
 using Crm.Sample.Application.Common.Interfaces;
 using Crm.Sample.Application.Dtos.Customers;
+using Crm.Sample.Application.Services.Base;
 using Crm.Sample.Domain.Entities.Customers;
 using Crm.Sample.Domain.Events.Customers;
 using Crm.Sample.Domain.Repositories.Customers;
-using Crm.Sample.Infrastructure.Services.Base;
 using FluentValidation;
 
-namespace Crm.Sample.Infrastructure.Services.Customers
+namespace Crm.Sample.Application.Services.Customers
 {
     public class CustomerService : BaseService<Customer, CreateCustomerDto, UpdateCustomerDto, CustomerDto>, ICustomerService
     {

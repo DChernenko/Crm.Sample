@@ -1,30 +1,3 @@
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-
-//builder.Services.AddControllers();
-//// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-//builder.Services.AddOpenApi();
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.MapOpenApi();
-//}
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.MapControllers();
-
-//app.Run();
-
-//using API.Middleware;
-//using Application;
-
 using Crm.Sample.Api.Extensions;
 using Crm.Sample.Api.Middleware;
 using Crm.Sample.Application;
@@ -41,7 +14,7 @@ public partial class Program
         // Add services to the container
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        
+
         // Add application layer
         builder.Services.AddApplication(builder.Configuration);
 
@@ -64,6 +37,9 @@ public partial class Program
         });
         builder.Services.AddQuartzJobs(builder.Configuration);
 
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
+
         var app = builder.Build();
 
         // apply migrations automatically on startup
@@ -73,7 +49,10 @@ public partial class Program
             db.Database.Migrate();
         }
 
-        app.UseMiddleware<ExceptionMiddleware>();
+        app.UseExceptionHandler();
+        builder.Services.AddProblemDetails();
+        app.UseExceptionHandler();
+
         app.UseHttpsRedirection();
         app.UseCors("AllowAll");
         app.UseAuthorization();

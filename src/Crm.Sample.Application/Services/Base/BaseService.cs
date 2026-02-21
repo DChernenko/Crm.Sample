@@ -5,7 +5,7 @@ using Crm.Sample.Domain.Exceptions;
 using Crm.Sample.Domain.Repositories.Base;
 using FluentValidation;
 
-namespace Crm.Sample.Infrastructure.Services.Base
+namespace Crm.Sample.Application.Services.Base
 {
     public abstract class BaseService<TEntity, TCreateDto, TUpdateDto, TResponseDto>
         : IBaseService<TEntity, TCreateDto, TUpdateDto, TResponseDto>
@@ -125,5 +125,6 @@ namespace Crm.Sample.Infrastructure.Services.Base
         protected abstract TEntity MapToEntity(TCreateDto createDto, int userId);
 
         protected abstract void MapToEntity(TUpdateDto updateDto, TEntity entity, int userId);
+
     }
 }

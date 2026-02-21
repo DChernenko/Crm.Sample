@@ -1,4 +1,4 @@
-﻿namespace Crm.Sample.Application.Services.Base
+﻿namespace Crm.Sample.Application.Abstractions.Base
 {
     public interface IBaseService<TEntity, TCreateDto, TUpdateDto, TResponseDto>
          where TEntity : class

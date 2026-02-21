@@ -1,5 +1,5 @@
-﻿using Crm.Sample.Application.Dtos.Customers;
-using Crm.Sample.Application.Services.Customers;
+﻿using Crm.Sample.Application.Abstractions.Customers;
+using Crm.Sample.Application.Dtos.Customers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crm.Sample.Api.Controllers
