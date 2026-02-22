@@ -4,7 +4,6 @@ using Crm.Sample.Domain.Repositories.Customers;
 using Crm.Sample.Infrastructure.Options;
 using Crm.Sample.Infrastructure.Persistence;
 using Crm.Sample.Infrastructure.Repositories.Customers;
-using Crm.Sample.Infrastructure.Services.Customers;
 using Crm.Sample.Infrastructure.Services.Emails;
 using Crm.Sample.Infrastructure.Services.Redis;
 using Microsoft.EntityFrameworkCore;
