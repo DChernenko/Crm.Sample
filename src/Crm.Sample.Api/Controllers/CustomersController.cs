@@ -51,12 +51,5 @@ namespace Crm.Sample.Api.Controllers
             await _customerService.DeleteAsync(id, cancellationToken);
             return NoContent();
         }
-
-        //[HttpGet("check-email")]
-        //public async Task<ActionResult<bool>> CheckEmail(string email, string excludeId = null)
-        //{
-        //var exists = await _customerService.EmailExistsAsync(email, excludeId);
-        //return Ok(exists);
-        //}
     }
 }
