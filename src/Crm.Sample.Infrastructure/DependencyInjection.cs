@@ -29,24 +29,21 @@ namespace Crm.Sample.Infrastructure
             var msSqlSettings = configuration.GetSection("MsSqlDbOptions").Get<MsSqlDbOptions>()
                 ?? throw new InvalidOperationException("Database connection string not configured");
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(msSqlSettings.ConnectionString));
-
-            services.AddDbContext<AppDbContext>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(msSqlSettings.ConnectionString));
 
             //Redis 
             services.AddSingleton<IConnectionMultiplexer>(sp =>
             {
                 var RedisOptions = configuration.GetSection("RedisOptions").Get<RedisOptions>()
                 ?? throw new InvalidOperationException("Redis connection string not configured"); ;
-                
+
                 return ConnectionMultiplexer.Connect(RedisOptions.ConnectionString);
             });
 
             // Register repositories
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+
             // Services
             services.AddScoped<IEmailService, EmailService>();
 

@@ -13,7 +13,7 @@ namespace Crm.Sample.Infrastructure.Services.Redis
         private readonly IConnectionMultiplexer _connectionMultiplexer;
         private readonly IDatabase _database;
 
-        public RedisCache(IConnectionMultiplexer connectionMultiplexer, IOptions<RedisOptions> options)
+        public RedisCache(IConnectionMultiplexer connectionMultiplexer, IOptionsSnapshot<RedisOptions> options)
         {
             _connectionMultiplexer = connectionMultiplexer;
             _redisOptions = options.Value;

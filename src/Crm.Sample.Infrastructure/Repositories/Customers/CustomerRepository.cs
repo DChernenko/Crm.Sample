@@ -9,9 +9,8 @@ namespace Crm.Sample.Infrastructure.Repositories.Customers
     public class CustomerRepository(AppDbContext context)
         : BaseRepository<Customer>(context), ICustomerRepository
     {
-        public Task<int> CountNewCustomersAsync(DateTime fromDateUtc)
-            => _context.Customers
-                .Where(c => c.CreateDate >= fromDateUtc)
-                .CountAsync();
+        public Task<int> CountNewCustomersAsync(DateTime fromDateUtc, CancellationToken cancellationToken = default)
+            => _dbSet.Where(c => c.CreateDate >= fromDateUtc)
+                .CountAsync(cancellationToken);
     }
 }

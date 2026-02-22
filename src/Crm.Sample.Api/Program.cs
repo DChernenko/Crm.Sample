@@ -13,8 +13,7 @@ public partial class Program
 
         // Add services to the container
         builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-
+        
         // Add application layer
         builder.Services.AddApplication(builder.Configuration);
 
@@ -36,10 +35,8 @@ public partial class Program
                 });
         });
         builder.Services.AddQuartzJobs(builder.Configuration);
-
         builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-        builder.Services.AddProblemDetails();
-
+        
         var app = builder.Build();
 
         // apply migrations automatically on startup
@@ -49,7 +46,6 @@ public partial class Program
             db.Database.Migrate();
         }
 
-        app.UseExceptionHandler();
         builder.Services.AddProblemDetails();
         app.UseExceptionHandler();
 

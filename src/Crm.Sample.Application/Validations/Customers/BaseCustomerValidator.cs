@@ -10,11 +10,11 @@ namespace Crm.Sample.Application.Validations.Customers
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty().WithMessage("First name is required.")
-                .MaximumLength(100).WithMessage("First name must not exceed 50 characters.");
+                .MaximumLength(100).WithMessage("First name must not exceed {MaxLength} characters.");
 
             RuleFor(x => x.LastName)
                 .NotEmpty().WithMessage("Last name is required.")
-                .MaximumLength(100).WithMessage("Last name must not exceed 50 characters.");
+                .MaximumLength(100).WithMessage("Last name must not exceed {MaxLength} characters.");
         }
     }
 }

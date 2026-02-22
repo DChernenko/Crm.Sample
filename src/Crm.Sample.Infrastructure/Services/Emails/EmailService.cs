@@ -13,7 +13,7 @@ namespace Crm.Sample.Infrastructure.Services.Emails
         private readonly EmailOptions _emailOptions;
         private readonly ILogger<EmailService> _logger;
 
-        public EmailService(IOptions<EmailOptions> EmailOptions, ILogger<EmailService> logger)
+        public EmailService(IOptionsSnapshot<EmailOptions> EmailOptions, ILogger<EmailService> logger)
         {
             _emailOptions = EmailOptions.Value;
             _logger = logger;

@@ -13,7 +13,8 @@ namespace Crm.Sample.Infrastructure.Persistence.Configuration.Base
 
             Property(t => t.Id).ValueGeneratedOnAdd();
 
-            Property(t => t.ModifiedDate).HasColumnTypeDateTime();                        
+            Property(t => t.ModifiedDate).HasColumnTypeDateTime();
+            Property(t => t.CreateDate).HasColumnTypeDateTime();
         }
     }
 }

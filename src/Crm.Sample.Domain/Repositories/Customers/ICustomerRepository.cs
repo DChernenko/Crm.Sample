@@ -5,6 +5,6 @@ namespace Crm.Sample.Domain.Repositories.Customers
 {
     public interface ICustomerRepository : IBaseRepository<Customer>
     {
-        Task<int> CountNewCustomersAsync(DateTime fromDateUtc);
+        Task<int> CountNewCustomersAsync(DateTime fromDateUtc, CancellationToken cancellationToken = default);
     }
 }

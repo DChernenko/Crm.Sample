@@ -2,7 +2,6 @@
 
 namespace Crm.Sample.Application.Common.Interfaces
 {
-    // todo where is located in infrastructure or application?
     public interface IApplicationCach
     {
         Task<T?> GetAsync<T>(string key);
