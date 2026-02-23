@@ -31,9 +31,9 @@ namespace Crm.Sample.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2(0)");
 
-                    b.Property<int>("CreaterId")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")

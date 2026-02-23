@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Crm.Sample.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260217213809_Init")]
+    [Migration("20260223205608_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -34,9 +34,9 @@ namespace Crm.Sample.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2(0)");
 
-                    b.Property<int>("CreaterId")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")

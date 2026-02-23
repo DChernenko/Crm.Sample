@@ -2,7 +2,7 @@
 using Microsoft.OpenApi;
 using System.Reflection;
 
-namespace Crm.Sample.Api.Extensions
+namespace Crm.Sample.Api.Extensions.Swagger
 {
     public static class SwaggerServiceExtensions
     {
@@ -11,7 +11,7 @@ namespace Crm.Sample.Api.Extensions
             var swaggerSettings = configuration.GetSection(nameof(SwaggerOptions)).Get<SwaggerOptions>()
                 ?? throw new InvalidOperationException($"Failed to bind {nameof(SwaggerOptions)} from configuration."); ;
 
-            if (swaggerSettings?.Enabled != true)
+            if (!swaggerSettings.Enabled)
                 return services;
 
             services.AddEndpointsApiExplorer();

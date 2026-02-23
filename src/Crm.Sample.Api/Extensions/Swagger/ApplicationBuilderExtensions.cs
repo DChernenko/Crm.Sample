@@ -1,20 +1,18 @@
 ﻿using Crm.Sample.Infrastructure.Options;
 
-namespace Crm.Sample.Api.Extensions
+namespace Crm.Sample.Api.Extensions.Swagger
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app, IConfiguration configuration, IHostEnvironment env)
+        public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app, IConfiguration configuration)
         {
             var swaggerSettings = configuration.GetSection(nameof(SwaggerOptions)).Get<SwaggerOptions>()
                 ?? throw new InvalidOperationException($"Failed to bind {nameof(SwaggerOptions)} from configuration.");
 
-            if (swaggerSettings?.Enabled != true)
+            if (!swaggerSettings.Enabled)
                 return app;
 
-            if (!env.IsDevelopment() && swaggerSettings.Enabled)
-                return app;
-
+            app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint(

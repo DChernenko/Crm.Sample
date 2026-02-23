@@ -6,7 +6,7 @@
     {
         public TId Id { get; set; }
         public DateTime CreateDate { get; set; }
-        public int CreaterId { get; set; }
+        public int CreatorId { get; set; }
         public DateTime ModifiedDate { get; set; }
         public int ModifierId { get; set; }
     }

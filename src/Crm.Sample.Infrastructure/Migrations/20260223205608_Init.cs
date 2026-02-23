@@ -25,8 +25,8 @@ namespace Crm.Sample.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreaterId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2(0)", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2(0)", nullable: false),
                     ModifierId = table.Column<int>(type: "int", nullable: false)
                 },

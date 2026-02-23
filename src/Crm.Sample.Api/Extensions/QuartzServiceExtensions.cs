@@ -4,15 +4,14 @@ using Quartz;
 
 namespace Crm.Sample.Api.Extensions
 {
-    // todo use Background Service instead of Quartz
     public static class QuartzServiceExtensions
     {
         public static IServiceCollection AddQuartzJobs(this IServiceCollection services, IConfiguration configuration)
         {
             var options = configuration.GetSection(nameof(CronJobsOptions)).Get<CronJobsOptions>()
-				?? throw new InvalidOperationException($"Failed to bind {nameof(CronJobsOptions)} from configuration.");
+                ?? throw new InvalidOperationException($"Failed to bind {nameof(CronJobsOptions)} from configuration.");
 
-			services.AddQuartz(quartz =>
+            services.AddQuartz(quartz =>
             {
                 var jobKey = new JobKey(nameof(DailyReportJob));
                 quartz.AddJob<DailyReportJob>(opts => opts.WithIdentity(jobKey));

@@ -9,7 +9,6 @@ namespace Crm.Sample.Infrastructure.Persistence.Configuration
         public CustomerConfiguration(ModelBuilder builder) : base(builder)
         {
             ToTable("Customers", "Core");
-
             Property(c => c.FirstName).IsRequired().HasMaxLength(100);
             Property(c => c.LastName).IsRequired().HasMaxLength(100);
             Property(c => c.Phone).IsRequired().HasMaxLength(20);

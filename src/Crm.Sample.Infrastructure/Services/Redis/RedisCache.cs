@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace Crm.Sample.Infrastructure.Services.Redis
 {
-    public class RedisCache : IApplicationCach
+    public class RedisCache : IApplicationCache
     {
         private readonly RedisOptions _redisOptions;
         private readonly IConnectionMultiplexer _connectionMultiplexer;
@@ -67,11 +67,5 @@ namespace Crm.Sample.Infrastructure.Services.Redis
             }
             return key;
         }
-
-        //public Task HashSetAsync(string key, string field, string value)
-        //    => _database.HashSetAsync(key, field, value);
-
-        //public async Task<string> HashGetAsync(string key, string field)
-        //   => await _database.HashGetAsync(key, field);
     }
 }

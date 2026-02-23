@@ -17,7 +17,7 @@ namespace Crm.Sample.Application.Services.Customers
             IMessageBus messageBus,
             ICustomerRepository customerRepository,
             IUnitOfWork unitOfWork,
-            IApplicationCach cache,
+            IApplicationCache cache,
             IValidator<CreateCustomerDto> createValidator,
             IValidator<UpdateCustomerDto> updateValidator
             ) : base(customerRepository, unitOfWork, cache, createValidator, updateValidator)
@@ -61,7 +61,7 @@ namespace Crm.Sample.Application.Services.Customers
                 Email = createDto.Email,
 
                 CreateDate = DateTime.Now,
-                CreaterId = userId,
+                CreatorId = userId,
                 ModifiedDate = DateTime.Now
             };
         }

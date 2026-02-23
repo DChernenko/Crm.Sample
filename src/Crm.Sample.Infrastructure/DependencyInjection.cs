@@ -48,7 +48,7 @@ namespace Crm.Sample.Infrastructure
             services.AddScoped<IEmailService, EmailService>();
 
             //Redis 
-            services.AddScoped<IApplicationCach, RedisCache>();
+            services.AddScoped<IApplicationCache, RedisCache>();
 
             return services;
         }

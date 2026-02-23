@@ -1,4 +1,5 @@
-﻿using Crm.Sample.Application.Abstractions.Base;
+﻿#nullable enable
+using Crm.Sample.Application.Abstractions.Base;
 using Crm.Sample.Application.Common.Enums;
 using Crm.Sample.Application.Common.Interfaces;
 using Crm.Sample.Domain.Exceptions;
@@ -14,7 +15,7 @@ namespace Crm.Sample.Application.Services.Base
     {
         protected readonly IBaseRepository<TEntity> _repository;
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IApplicationCach _cache;
+        protected readonly IApplicationCache _cache;
         protected readonly IValidator<TCreateDto>? _createValidator;
         protected readonly IValidator<TUpdateDto>? _updateValidator;
         protected readonly string _entityName;
@@ -22,7 +23,7 @@ namespace Crm.Sample.Application.Services.Base
         protected BaseService(
             IBaseRepository<TEntity> repository,
             IUnitOfWork unitOfWork,
-            IApplicationCach cache,
+            IApplicationCache cache,
             IValidator<TCreateDto>? createValidator = null,
             IValidator<TUpdateDto>? updateValidator = null)
         {
