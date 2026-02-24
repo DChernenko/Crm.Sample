@@ -1,7 +1,6 @@
 ﻿namespace Crm.Sample.Application.Common.Interfaces
 {
-    // todo use IDisposable??
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

@@ -47,7 +47,8 @@ namespace Crm.Sample.Application.Services.Customers
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 Phone = entity.Phone,
-                Email = entity.Email
+                Email = entity.Email,
+                CreatedAt = entity.CreateDate
             };
         }
 

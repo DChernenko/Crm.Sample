@@ -1,5 +1,4 @@
-﻿using Crm.Sample.Application.Abstractions.Customers;
-using Crm.Sample.Application.Common.Interfaces;
+﻿using Crm.Sample.Application.Common.Interfaces;
 using Crm.Sample.Domain.Repositories.Customers;
 using Crm.Sample.Infrastructure.Options;
 using Crm.Sample.Infrastructure.Persistence;
@@ -19,25 +18,24 @@ namespace Crm.Sample.Infrastructure
         {
             #region Options
 
-            services.Configure<MsSqlDbOptions>(configuration.GetSection(nameof(MsSqlDbOptions)));
+            services.Configure<ConnectionStrings>(configuration.GetSection(nameof(ConnectionStrings)));
             services.Configure<RedisOptions>(configuration.GetSection(nameof(RedisOptions)));
             services.Configure<RabbitMqOptions>(configuration.GetSection(nameof(RabbitMqOptions)));
             services.Configure<EmailOptions>(configuration.GetSection(nameof(EmailOptions)));
             services.Configure<CronJobsOptions>(configuration.GetSection(nameof(CronJobsOptions)));
             #endregion Options
 
-            var msSqlSettings = configuration.GetSection("MsSqlDbOptions").Get<MsSqlDbOptions>()
-                ?? throw new InvalidOperationException("Database connection string not configured");
-
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(msSqlSettings.ConnectionString));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("MsSqlConnection")));
 
             //Redis 
             services.AddSingleton<IConnectionMultiplexer>(sp =>
             {
-                var RedisOptions = configuration.GetSection("RedisOptions").Get<RedisOptions>()
+                var redisOptions = configuration.GetSection("RedisOptions").Get<RedisOptions>()
                 ?? throw new InvalidOperationException("Redis connection string not configured"); ;
 
-                return ConnectionMultiplexer.Connect(RedisOptions.ConnectionString);
+                return ConnectionMultiplexer.Connect(redisOptions.ConnectionString);
             });
 
             // Register repositories

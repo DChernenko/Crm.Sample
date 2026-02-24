@@ -40,6 +40,7 @@ namespace Crm.Sample.Application.Services.Base
             var cacheKey = _cache.GetCacheKey(CacheOperation.GetById, _entityName, id);
 
             var cached = await _cache.GetAsync<TResponseDto>(cacheKey);
+            
             if (cached != null)
                 return cached;
 
@@ -49,6 +50,7 @@ namespace Crm.Sample.Application.Services.Base
                 return null;
 
             var result = MapToResponse(entity);
+
             await _cache.SetAsync(cacheKey, result);
 
             return result;
@@ -59,6 +61,7 @@ namespace Crm.Sample.Application.Services.Base
             var cacheKey = _cache.GetCacheKey(CacheOperation.GetAll, _entityName);
 
             var cached = await _cache.GetAsync<IEnumerable<TResponseDto>>(cacheKey);
+            
             if (cached != null)
                 return cached;
 
@@ -102,6 +105,7 @@ namespace Crm.Sample.Application.Services.Base
             MapToEntity(updateDto, entity, userId);
 
             _repository.Update(entity);
+            
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             await _cache.RemoveAsync([_cache.GetCacheKey(CacheOperation.GetAll, _entityName), _cache.GetCacheKey(CacheOperation.GetById, _entityName, id)]);

@@ -1,7 +1,7 @@
 ﻿namespace Crm.Sample.Infrastructure.Options
 {
-    public class MsSqlDbOptions
+    public class ConnectionStrings
     {
-        public string ConnectionString { get; set; }
+        public string MsSqlConnection { get; set; }
     }
 }
