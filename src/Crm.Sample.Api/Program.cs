@@ -52,12 +52,10 @@ namespace Crm.Sample.Api
                 db.Database.Migrate();
             }
 
-
             app.UseExceptionHandler();
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
-            app.UseAuthorization();
             app.MapControllers();
             app.UseSwaggerDocumentation(app.Configuration);
 

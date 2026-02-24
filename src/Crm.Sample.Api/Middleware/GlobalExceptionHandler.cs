@@ -28,13 +28,9 @@ namespace Crm.Sample.Api.Middleware
                     HttpStatusCode.BadRequest,
                     exception.Message),
 
-                UnauthorizedAccessException => CreateProblemDetails(
-                    HttpStatusCode.Unauthorized,
-                    "Unauthorized"),
-
                 _ => CreateProblemDetails(
-                    HttpStatusCode.InternalServerError,
-                    "Internal server error")
+                     HttpStatusCode.InternalServerError,
+                     "Internal server error")
             };
 
             httpContext.Response.StatusCode = (int)response.Status;
